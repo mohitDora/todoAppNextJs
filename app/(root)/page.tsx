@@ -6,7 +6,7 @@ import { createTask, getTaskById } from "@/lib/actions/task.action";
 
 export default async function Home() {
   const listItems=await getTaskById();
-  console.log(listItems)
+  // console.log(listItems)
 // const create=async()=>{
 //   try {
 //     const event={
