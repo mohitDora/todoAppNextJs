@@ -6,7 +6,7 @@ export default authMiddleware({
     "/api/webhook/clerk",
 
   ],
-
+  ignoredRoutes: ["/favicon.ico"]
 });
 
 export const config = {

@@ -4,19 +4,11 @@ import { connectToDatabase } from '@/lib/database'
 import User from '@/lib/database/models/user.model'
 
 
-export async function createUser({ params }: {
-    params: {
-        clerkId: string
-        firstName: string
-        lastName: string
-        username: string
-        email: string
-    }
-}) {
+export async function createUser(user:any) {
     try {
         await connectToDatabase()
 
-        const newUser = await User.create(params)
+        const newUser = await User.create(user)
         return JSON.parse(JSON.stringify(newUser))
     } catch (error) {
         console.log(error)
