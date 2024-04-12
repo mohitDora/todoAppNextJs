@@ -1,10 +1,15 @@
-import { SignedOut } from '@clerk/nextjs'
+import { SignedOut,SignedIn, UserButton } from '@clerk/nextjs'
 import React from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 
 function Header() {
   return (
+    <>
+    <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          
+          </SignedIn>
     <SignedOut>
         <Button>
             <Link href="/sign-in">
@@ -12,6 +17,7 @@ function Header() {
             </Link>
         </Button>
     </SignedOut>
+    </>
   )
 }
 
