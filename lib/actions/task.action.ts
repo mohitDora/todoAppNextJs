@@ -10,12 +10,13 @@ const populateEvent = (query: any) => {
       .populate({ path: 'userDetails', model: User, select: '_id firstName lastName' })
   }
 
-export async function createTask(task:any) {
+export async function createTask(task:any,path:string) {
+
     try {
       await connectToDatabase()
       console.log(task)
-      const newTask = await Task.create(task)
-    //   revalidatePath(params.path)
+      const newTask = await Task.create({name:task})
+      revalidatePath(path)
   
       return JSON.parse(JSON.stringify(newTask))
     } catch (error) {
@@ -24,36 +25,37 @@ export async function createTask(task:any) {
   }
 
   // GET ONE EVENT BY ID
-export async function getEventById(eventId: string) {
+//   eventId: string
+export async function getTaskById() {
     try {
       await connectToDatabase()
   
-      const task = await populateEvent(Task.findById(eventId))
+      const task = await Task.find()
   
       if (!task) throw new Error('Event not found')
   
-      return JSON.parse(JSON.stringify(event))
+      return JSON.parse(JSON.stringify(task))
     } catch (error) {
       console.log(error)
     }
   }
 
   // UPDATE
-export async function updateEvent({params}:{params:{
-    userId:string;
-    name:string;
+export async function updateEvent(
+    userId:string,
+    isCompleted:Object,
     path:string
-}}) {
+) {
     try {
       await connectToDatabase()
   
-      const TaskToUpdate = await Task.findById(params.userId)
-      if (!TaskToUpdate || TaskToUpdate.organizer.toHexString() !== params.userId) {
-        throw new Error('Unauthorized or event not found')
-      }
-  
-      const updatedEvent = await Task.findByIdAndUpdate()
-      revalidatePath(params.path)
+      const TaskToUpdate = await Task.findById(userId)
+    //   if (!TaskToUpdate || TaskToUpdate.organizer.toHexString() !== userId) {
+    //     throw new Error('Unauthorized or event not found')
+    //   }
+        if(!TaskToUpdate) throw new Error("Not found")
+      const updatedEvent = await Task.findByIdAndUpdate(userId,isCompleted)
+      revalidatePath(path)
   
       return JSON.parse(JSON.stringify(updatedEvent))
     } catch (error) {
@@ -62,15 +64,15 @@ export async function updateEvent({params}:{params:{
   }
   
   // DELETE
-  export async function deleteEvent({params}:{params:{
+  export async function deleteEvent(
    taskId:string,
     path:string
-}}) {
+) {
     try {
       await connectToDatabase()
   
-      const deletedEvent = await Task.findByIdAndDelete(params.taskId)
-      if (deletedEvent) revalidatePath(params.path)
+      const deletedEvent = await Task.findByIdAndDelete(taskId)
+      if (deletedEvent) revalidatePath(path)
     } catch (error) {
       console.log(error)
     }
