@@ -10,15 +10,12 @@ const populateEvent = (query: any) => {
       .populate({ path: 'userDetails', model: User, select: '_id firstName lastName' })
   }
 
-export async function createEvent({params}:{params:{
-    userId:string;
-    name:string;
-    path:string
-}}) {
+export async function createTask(task:any) {
     try {
       await connectToDatabase()
-      const newTask = await Task.create(params.userId)
-      revalidatePath(params.path)
+      console.log(task)
+      const newTask = await Task.create(task)
+    //   revalidatePath(params.path)
   
       return JSON.parse(JSON.stringify(newTask))
     } catch (error) {

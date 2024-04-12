@@ -6,6 +6,6 @@ const TaskSchema = new Schema({
   userDetails: { type: Schema.Types.ObjectId, ref: 'User' },
 })
 
-const Task = models.User || model('Task', TaskSchema);
+const Task = models.Task || model('Task', TaskSchema);
 
 export default Task;
