@@ -6,11 +6,13 @@ import Link from 'next/link'
 function Header() {
   return (
     <SignedOut>
-        <Button className='w-[20rem] mx-auto'>
-            <Link href="/sign-in">
+        <Link href="/sign-in" className=' mx-auto'>
+        <Button >
+            
             Get Started
-            </Link>
+         
         </Button>
+        </Link>
     </SignedOut>
 
   )

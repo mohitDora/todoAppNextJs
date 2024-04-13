@@ -5,6 +5,7 @@ import { createUser, updateUser } from '@/lib/actions/user.action'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import { deleteUser } from '@/lib/actions/task.action'
+import { revalidatePath } from 'next/cache'
 
 export async function POST(req: Request) {
     console.log('Webhook received');
@@ -77,6 +78,7 @@ export async function POST(req: Request) {
                     userId: newUser._id
                 }
             })
+            revalidatePath("/")
         }
 
         return NextResponse.json({ message: 'OK', user: newUser })

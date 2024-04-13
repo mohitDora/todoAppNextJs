@@ -16,15 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 
 export const List = ({ list }: { list: any }) => {
-  const display = list?.map((item: any, index: any) => {
-    return (
-      <div key={index}>
-        <h1 className={`${item.isCompleted ? "bg-lime-400" : ""}`}>{item.name}</h1>
-        <Button onClick={() => updateEvent(item._id, { ...item, isCompleted: !(item.isCompleted) }, "/")}>completed</Button>
-        <Button onClick={() => deleteEvent(item._id, "/")}>delete</Button>
-      </div>
-    )
-  })
+  console.log(list?list:"")
   return (
     <>
     
