@@ -29,7 +29,7 @@ console.log("input",id)
         value={task} 
         onChange={handleInputChange} 
       />
-      <Button type="submit">Add Task</Button>
+      <Button disabled={id.id?false:true} type="submit">Add Task</Button>
     </form>
   );
 }

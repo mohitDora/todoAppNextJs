@@ -9,10 +9,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { currentUser } from '@clerk/nextjs';
 import SigninButton from "@/components/shared/SigninButton"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Todo(userId:any,listItems:any) {
-  const [dis,setDis]=useState(userId.userId)
+  const [dis,setDis]=useState()
+
   console.log(listItems)
   return (
     <>
