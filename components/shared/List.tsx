@@ -27,6 +27,7 @@ export const List = ({ list }: { list: any }) => {
   })
   return (
     <>
+    
       <Table>
         
         <TableHeader>
@@ -41,7 +42,7 @@ export const List = ({ list }: { list: any }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {list.map((item: any, index: any) => (
+          {list?.map((item: any, index: any) => (
             <TableRow key={index}>
               <TableCell>
               <Checkbox

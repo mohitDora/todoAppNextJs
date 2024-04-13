@@ -17,6 +17,7 @@ console.log("input",id)
   const handleSubmit = async(e:any) => {
     e.preventDefault();
     const newTask=await createTask(task,id.id,"/");
+    console.log(newTask)
     setTask("");
   };
 
