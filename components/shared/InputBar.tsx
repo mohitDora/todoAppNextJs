@@ -21,7 +21,7 @@ console.log("input",id)
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-md lg:max-w-lg items-center space-x-2 m-auto mt-4">
+    <form onSubmit={handleSubmit} className="flex w-full max-w-md lg:max-w-lg items-center space-x-2 m-auto mt-4 p-4">
       <Input 
         type="text" 
         placeholder="Enter your task" 
