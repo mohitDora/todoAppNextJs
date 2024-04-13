@@ -10,12 +10,17 @@ const populateEvent = (query: any) => {
       .populate({ path: 'userDetails', model: User, select: '_id firstName lastName' })
   }
 
-export async function createTask(task:any,path:string) {
+export async function createTask(task:any,id:string,path:string) {
 
     try {
       await connectToDatabase()
-      console.log(task)
-      const newTask = await Task.create({name:task})
+      console.log(task);
+      const newtaskDetails={
+        name:task,
+        userDetails:id
+      }
+      const newTask = await Task.create(newtaskDetails)
+  
       revalidatePath(path)
   
       return JSON.parse(JSON.stringify(newTask))
@@ -79,15 +84,13 @@ export async function updateEvent(
   }
 
  // GET EVENTS BY ORGANIZER
-export async function getEventsByUser({params}:{params:{
-    userId:string;
-    name:string;
-    path:string
-}}) {
+export async function getTaskByUser(
+    userId:string,
+) {
     try {
       await connectToDatabase()
   
-      const conditions = { organizer: params.userId }
+      const conditions = { userDetails: userId }
 
   
       const eventsQuery = Task.find(conditions)

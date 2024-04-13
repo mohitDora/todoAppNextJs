@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createTask } from '@/lib/actions/task.action';
 
-export function InputBar() {
+
+export function InputBar(id:any) {
+console.log("input",id)
   const [task, setTask] = useState("");
 
   const handleInputChange = (e:any) => {
@@ -14,22 +16,19 @@ export function InputBar() {
 
   const handleSubmit = async(e:any) => {
     e.preventDefault();
-    const newTask=await createTask(task,"/");
-    console.log(newTask)
-    console.log("Email submitted:", task);
-    // Optionally, you can clear the input field after submission
+    const newTask=await createTask(task,id.id,"/");
     setTask("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-sm items-center space-x-2">
+    <form onSubmit={handleSubmit} className="flex w-full max-w-md lg:max-w-lg items-center space-x-2 m-auto mt-4">
       <Input 
         type="text" 
         placeholder="Enter your task" 
         value={task} 
         onChange={handleInputChange} 
       />
-      <Button type="submit">Subscribe</Button>
+      <Button type="submit">Add Task</Button>
     </form>
   );
 }

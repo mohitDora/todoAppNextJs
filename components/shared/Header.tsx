@@ -5,8 +5,12 @@ import Link from 'next/link'
 
 function Header() {
   return (
-    <>
-    <SignedIn>
+    <div className='flex justify-between px-10 py-4'>
+      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+      Todo App
+    </h3>
+      <div>
+      <SignedIn>
             <UserButton afterSignOutUrl="/" />
           
           </SignedIn>
@@ -17,7 +21,9 @@ function Header() {
             </Link>
         </Button>
     </SignedOut>
-    </>
+      </div>
+    
+    </div>
   )
 }
 

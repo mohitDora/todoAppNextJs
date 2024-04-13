@@ -8,9 +8,9 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <Header/>
+
       <main>{children}</main>
-      <Footer/>
+
     </div>
   );
 }
